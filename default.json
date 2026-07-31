@@ -1,0 +1,46 @@
+{
+    "$schema": "https://docs.renovatebot.com/renovate-schema.json",
+    "extends": [
+        "config:best-practices",
+        ":separateMultipleMajorReleases"
+    ],
+    "automergeType": "pr",
+    "platformAutomerge": true,
+    "ignoreTests": false,
+    "internalChecksFilter": "strict",
+    "dependencyDashboardAutoclose": true,
+    "prConcurrentLimit": 5,
+    "major": {
+        "dependencyDashboardApproval": true,
+        "automerge": false
+    },
+    "lockFileMaintenance": {
+        "enabled": true,
+        "automerge": true,
+        "automergeType": "pr"
+    },
+    "nix": {
+        "enabled": true
+    },
+    "vulnerabilityAlerts": {
+        "enabled": true,
+        "addLabels": [
+            "security"
+        ],
+        "automerge": false
+    },
+    "packageRules": [
+        {
+            "description": "Automerge stable non-major updates after 14 days",
+            "matchUpdateTypes": [
+                "minor",
+                "patch"
+            ],
+            "matchCurrentVersion": "!/^0/",
+            "minimumReleaseAge": "7 days",
+            "minimumReleaseAgeBehaviour": "timestamp-optional",
+            "automerge": true,
+            "automergeType": "pr"
+        }
+    ]
+}
